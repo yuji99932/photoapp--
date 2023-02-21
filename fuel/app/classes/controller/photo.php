@@ -45,62 +45,6 @@ class Controller_Photo extends Controller_Template
 					'comment' => Input::post('comment'),
 				));
 
-				// このアップロードのカスタム設定
-				$config = array(
-					'path' => DOCROOT.DS.'files',
-					'randomize' => true,
-					'ext_whitelist' => array('img', 'jpg', 'jpeg', 'gif', 'png'),
-				);
-				
-				// $_FILES 内のアップロードされたファイルを処理する
-				Upload::process($config);
-				
-				// 有効なファイルがある場合
-				if (Upload::is_valid())
-				{
-					// 設定にしたがって保存する
-					Upload::save();
-					\Log::error(\print_r($config['path'], true));
-				
-					// モデルを呼び出してデータベースを更新する
-					Model_Upload::add(Upload::get_files());
-				}
-				
-				// エラーを処理する
-				foreach (Upload::get_errors() as $file)
-				{
-					// $file はファイル情報の配列
-					// $file['errors'] は発生したエラーの内容を含む配列で、
-					// 配列の要素は 'error' と 'message' を含む配列
-				}
-				// このアップロードのカスタム設定
-				$config = array(
-					'path' => DOCROOT.DS.'files',
-					'randomize' => true,
-					'ext_whitelist' => array('img', 'jpg', 'jpeg', 'gif', 'png'),
-				);
-				
-				// $_FILES 内のアップロードされたファイルを処理する
-				Upload::process($config);
-				
-				// 有効なファイルがある場合
-				if (Upload::is_valid())
-				{
-					// 設定にしたがって保存する
-					Upload::save();
-				
-					// モデルを呼び出してデータベースを更新する
-					// Model_Uploads::add(Upload::get_files());
-				}
-				
-				// エラーを処理する
-				foreach (Upload::get_errors() as $file)
-				{
-					// $file はファイル情報の配列
-					// $file['errors'] は発生したエラーの内容を含む配列で、
-					// 配列の要素は 'error' と 'message' を含む配列
-				}
-
 				if ($photo and $photo->save())
 				{
 					Session::set_flash('success', 'Added photo #'.$photo->id.'.');
@@ -193,40 +137,7 @@ class Controller_Photo extends Controller_Template
 		}
 
 		Response::redirect('photo');
-
-	}
-
-	public function action_upload()
-	{
-		// このアップロードのカスタム設定
-		$config = array(
-			'path' => DOCROOT.DS.'files',
-			'randomize' => true,
-			'ext_whitelist' => array('img', 'jpg', 'jpeg', 'gif', 'png'),
-		);
-		
-		// $_FILES 内のアップロードされたファイルを処理する
-		Upload::process($config);
-		\Log::error(\print_r('!!', true));
-		
-		// 有効なファイルがある場合
-		if (Upload::is_valid())
-		{
-			// 設定にしたがって保存する
-			Upload::save();
-		
-			// モデルを呼び出してデータベースを更新する
-			// Model_Uploads::add(Upload::get_files());
-		}
-		
-		// エラーを処理する
-		foreach (Upload::get_errors() as $file)
-		{
-			// $file はファイル情報の配列
-			// $file['errors'] は発生したエラーの内容を含む配列で、
-			// 配列の要素は 'error' と 'message' を含む配列
-		}
-		return View::forge('upload');
+	
 	}
 
 }
