@@ -9,6 +9,7 @@ class Model_Photo extends Model
 		'comment',
 		'created_at',
 		'updated_at',
+		'user_id',
 	);
 
 	protected static $_observers = array(

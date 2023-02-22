@@ -39,10 +39,12 @@ class Controller_Photo extends Controller_Template
 
 			if ($val->run())
 			{
+				$value = Auth::get('id');
 
 				$photo = Model_Photo::forge(array(
 					'place' => Input::post('place'),
 					'comment' => Input::post('comment'),
+					'user_id' => $value,
 				));
 
 				if ($photo and $photo->save())
@@ -75,6 +77,11 @@ class Controller_Photo extends Controller_Template
 	public function action_edit($id = null)
 	{
 		is_null($id) and Response::redirect('photo');
+
+		$value = Model_Photo::find($id);
+		if ($value->user_id != Auth::get('id')) {
+			Response::redirect('photo');
+		}
 
 		if ( ! $photo = Model_Photo::find($id))
 		{
@@ -123,6 +130,11 @@ class Controller_Photo extends Controller_Template
 	public function action_delete($id = null)
 	{
 		is_null($id) and Response::redirect('photo');
+
+		$value = Model_Photo::find($id);
+		if ($value->user_id == Auth::get('id')) {
+			Response::redirect('photo');
+		}
 
 		if ($photo = Model_Photo::find($id))
 		{
