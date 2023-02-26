@@ -1,7 +1,7 @@
 <?php
 use Orm\Model;
 
-class Model_Photo extends Model
+class Model_Photo extends \Orm\Model_Soft
 {
 	protected static $_properties = array(
 		'id',
@@ -9,8 +9,13 @@ class Model_Photo extends Model
 		'comment',
 		'created_at',
 		'updated_at',
+		'deleted_at',
 		'user_id',
 	);
+
+	protected static $_soft_delete = array(
+		'deleted_field' => 'deleted_at',
+	 );
 
 	protected static $_observers = array(
 		'Orm\Observer_CreatedAt' => array(

@@ -132,7 +132,7 @@ class Controller_Photo extends Controller_Template
 		is_null($id) and Response::redirect('photo');
 
 		$value = Model_Photo::find($id);
-		if ($value->user_id == Auth::get('id')) {
+		if ($value->user_id != Auth::get('id')) {
 			Response::redirect('photo');
 		}
 
