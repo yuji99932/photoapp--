@@ -3568,3 +3568,19 @@ header.header-hover #navi {
 .col-md-4 {
   margin-bottom: 10px;
 }
+
+.img {
+  width: 50%;
+  height: 50%;
+  display: block;
+  margin: 20px 0;
+}
+
+.post-information {
+  font-size: 20px;
+}
+
+.field {
+  display: inline;
+  font-size: 16px;
+}
