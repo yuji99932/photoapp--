@@ -9,8 +9,8 @@ class Model_Upload extends \Orm\Model
 		'file_name',
 		'created_at',
 		'updated_at',
-          'photos_id',
-          'path',
+		'photos_id',
+		'path',
 	];
 
 	protected static $_observers = [
@@ -27,8 +27,6 @@ class Model_Upload extends \Orm\Model
 	public static function validate($factory)
 	{
 		$val = Validation::forge($factory);
-		// $val->add_field('place', 'Place', 'required|max_length[500]');
-
 		return $val;
 	}
 

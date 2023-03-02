@@ -21,11 +21,6 @@
 			</div>
 			<?php echo Form::close(); ?>
 
-			<!-- <form enctype="multipart/form-data" action="" method="post">
-				<input name="upload" type="file">
-				<input type="submit" value="送信" value="Upload">
-			</form> -->
-
 			<?php if (isset($html_error)): ?>
 				<div class=&quot;alert alert-danger&quot;><ul><?php echo $html_error; ?></ul></div>
 			<?php endif; ?>

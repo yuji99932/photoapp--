@@ -41,13 +41,6 @@ class Controller_User extends Controller_Template
 		Auth::logout();
 		Response::redirect('user/login');
 		$data["subnav"] = array('logout'=> 'active' );
-		// $this->template->title = 'User &raquo; Logout';
-		// $this->template->content = View::forge('user/logout', $data);
-	}
-
-	public function action_view()
-	{
-		return View::forge('user/view');
 	}
 
 }

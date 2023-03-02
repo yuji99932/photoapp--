@@ -22,11 +22,9 @@ class Controller_Photo extends Controller_Template
 		}
 
 		$data['upload'] = DB::select()->from('uploads')->where('photos_id', $id)->execute()->as_array();
-		\Log::error(\print_r($data['upload'], true));
 
 		$this->template->title = "Photo";
 		$this->template->content = View::forge('photo/view', $data);
-
 	}
 
 	public function action_create()
@@ -59,18 +57,13 @@ class Controller_Photo extends Controller_Template
 						'ext_whitelist' => array('img', 'jpg', 'jpeg', 'gif', 'png'),
 					);
 					
-					// $_FILES 内のアップロードされたファイルを処理する
 					Upload::process($config);
 					
-					// 有効なファイルがある場合
 					if (Upload::is_valid())
 					{
-						// 設定にしたがって保存する
 						Upload::save();
 					
-						// モデルを呼び出してデータベースを更新する
 						$file = Upload::get_files(0);
-						\Log::error(\print_r($file, true));
 						$upload = Model_Upload::forge(array(
 							'photos_id' => $photo->id,
 							'path' => '/files',
@@ -80,12 +73,8 @@ class Controller_Photo extends Controller_Template
 						$upload->save();
 					}
 					
-					// エラーを処理する
 					foreach (Upload::get_errors() as $file)
 					{
-						// $file はファイル情報の配列
-						// $file['errors'] は発生したエラーの内容を含む配列で、
-						// 配列の要素は 'error' と 'message' を含む配列
 					}
 
 

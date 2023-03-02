@@ -72,7 +72,4 @@
 <?php else: ?>
 <p>No Photos.</p>
 
-<?php endif; ?><p>
-	<!-- <?php echo Html::anchor('photo/create', '投稿する', array('class' => 'btn btn-success')); ?> -->
-
-</p>
+<?php endif; ?>
