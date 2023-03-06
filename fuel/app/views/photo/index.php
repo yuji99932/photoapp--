@@ -35,6 +35,10 @@
 	ko.applyBindings(new BetterListModel());
 </script>
 
+<?php
+	
+?>
+
 <h2 class="post-list">投稿一覧</h2>
 <br>
 <?php if ($photos): ?>
@@ -53,11 +57,12 @@
 				<td>
 					<div class="btn-toolbar">
 						<div class="btn-group">
-							<?php echo Html::anchor('photo/view/'.$item->id, '<i class="icon-eye-open"></i> 詳細', array('class' => 'btn btn-default btn-sm')); ?>		
+							<?php echo Html::anchor('photo/view/'.$item->id, '<i class="icon-eye-open"></i> 詳細', ['class' => 'btn btn-default btn-sm']); ?>		
 
 							<?php
 								if ($item->user_id == Auth::get('id')) {
-									echo Html::anchor('photo/edit/'.$item->id, '<i class="icon-wrench"></i> 編集', array('class' => 'btn btn-default btn-sm')); ?>						<?php echo Html::anchor('photo/delete/'.$item->id, '<i class="icon-trash icon-white"></i> 削除', array('class' => 'btn btn-sm btn-danger', 'onclick' => "return confirm('削除しますか?')"));
+									echo Html::anchor('photo/edit/'.$item->id, '<i class="icon-wrench"></i> 編集', ['class' => 'btn btn-default btn-sm']); ?>
+									<?php echo Html::anchor('photo/delete/'.$item->id, '<i class="icon-trash icon-white"></i> 削除', ['class' => 'btn btn-sm btn-danger', 'onclick' => "return confirm('削除しますか?')"]);
 								} ?>
 
 						</div>

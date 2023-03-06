@@ -12,26 +12,25 @@
 	<script type="text/javascript" src="/assets/js/knockout-3.5.1.js"></script>
 </head>
 <body>
-	
 	<div class="container">
 		<div class="col-md-12">
 			<li>
-			<?php echo Html::anchor('/photo', 'Travelapp', array('class' => 'title')); ?>
+			<?php echo Html::anchor('/photo', 'Travelapp', ['class' => 'title']); ?>
 				<ul class="post-btn">
-					<?php echo Html::anchor('photo/create', '投稿', array('class' => 'btn btn-success')); ?>
+					<?php echo Html::anchor('photo/create', '投稿', ['class' => 'btn btn-success']); ?>
 				</ul>
 				<?php if(!Auth::check()): ?>
 					<ul>
 						<li class="header-btn">
-							<?php echo Html::anchor('user/login', 'ログイン', array('class' => 'btn btn-success')); ?>
-							<?php echo Html::anchor('user/create', '新規登録', array('class' => 'btn btn-success')); ?>
+							<?php echo Html::anchor('user/login', 'ログイン', ['class' => 'btn btn-success']); ?>
+							<?php echo Html::anchor('user/create', '新規登録', ['class' => 'btn btn-success']); ?>
 						</li>
 					</ul>
 				<?php else: ?>
 					<ul>
 						<li class="header-btn">
-							<?php echo Html::anchor('user/logout', 'ログアウト', array('class' => 'btn btn-success')); ?>
-							<!-- <?php echo Html::anchor('user/view', 'マイページ', array('class' => 'btn btn-success')); ?> -->
+							<?php echo Html::anchor('user/logout', 'ログアウト', ['class' => 'btn btn-success']); ?>
+							<!-- <?php echo Html::anchor('user/view', 'マイページ', ['class' => 'btn btn-success']); ?> -->
 						</li>
 					</ul>
 				<?php endif; ?>

@@ -51,11 +51,7 @@ class Controller_Photo extends Controller_Template
 				if ($photo and $photo->save())
 				{
 					Session::set_flash('success', 'Added photo #'.$photo->id.'.');
-					$config = array(
-						'path' => DOCROOT.'files',
-						'randomize' => true,
-						'ext_whitelist' => array('img', 'jpg', 'jpeg', 'gif', 'png'),
-					);
+					$config = ['path' => DOCROOT.'files', 'randomize' => true, 'ext_whitelist' => ['img', 'jpg', 'jpeg', 'gif', 'png']];
 					
 					Upload::process($config);
 					
@@ -64,12 +60,12 @@ class Controller_Photo extends Controller_Template
 						Upload::save();
 					
 						$file = Upload::get_files(0);
-						$upload = Model_Upload::forge(array(
+						$upload = Model_Upload::forge([
 							'photos_id' => $photo->id,
 							'path' => '/files',
 							'file_name' => $file['saved_as'],
 							'origin_name' => $file['name']
-						));
+						]);
 						$upload->save();
 					}
 					
@@ -122,6 +118,27 @@ class Controller_Photo extends Controller_Template
 			if ($photo->save())
 			{
 				Session::set_flash('success', 'Updated photo #' . $id);
+				$config = ['path' => DOCROOT.'files', 'randomize' => true, 'ext_whitelist' => ['img', 'jpg', 'jpeg', 'gif', 'png'],];
+				
+				Upload::process($config);
+				
+				if (Upload::is_valid())
+				{
+					Upload::save();
+				
+					$file = Upload::get_files(0);
+					$upload = Model_Upload::forge([
+						'photos_id' => $photo->id,
+						'path' => '/files',
+						'file_name' => $file['saved_as'],
+						'origin_name' => $file['name']
+					]);
+					$upload->save();
+				}
+				
+				foreach (Upload::get_errors() as $file)
+				{
+				}
 
 				Response::redirect('photo');
 			}

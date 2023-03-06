@@ -5,7 +5,7 @@ class Controller_User extends Controller_Template
 
 	public function action_index()
 	{
-		$data["subnav"] = array('index'=> 'active' );
+		$data["subnav"] = ['index'=> 'active'];
 		$this->template->title = 'User &raquo; Index';
 		$this->template->content = View::forge('user/index', $data);
 	}
@@ -18,7 +18,7 @@ class Controller_User extends Controller_Template
 		$auth->create_user(Input::post('username'), Input::post('password'), Input::post('email'));
 		Response::redirect('photo/index');
 	}
-		$data["subnav"] = array('create'=> 'active' );
+		$data["subnav"] = ['create'=> 'active'];
 		$this->template->title = 'User &raquo; Create';
 		$this->template->content = View::forge('user/create', $data);
 	}
@@ -31,7 +31,7 @@ class Controller_User extends Controller_Template
 				Response::redirect('photo/index');
 			}
 		}
-		$data["subnav"] = array('login'=> 'active' );
+		$data["subnav"] = ['login'=> 'active'];
 		$this->template->title = 'User &raquo; Login';
 		$this->template->content = View::forge('user/login', $data);
 	}
